@@ -1,9 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
+
+// BillsRecord.cs - Form to view and manage saved bills
 
 namespace FM
 {

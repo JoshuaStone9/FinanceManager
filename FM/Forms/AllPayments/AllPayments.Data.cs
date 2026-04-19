@@ -1,6 +1,8 @@
 using Microsoft.Data.SqlClient;
 using System.Data;
 
+// AllPayments.Data.cs - Data access and loading logic for the AllPayments form
+
 namespace FM
 {
     public partial class AllPayments

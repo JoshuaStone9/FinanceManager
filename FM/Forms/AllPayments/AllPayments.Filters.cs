@@ -1,3 +1,6 @@
+
+// AllPayments.Filters.cs - Partial class for AllPayments form, handling filtering by month and year
+
 namespace FM
 {
     public partial class AllPayments

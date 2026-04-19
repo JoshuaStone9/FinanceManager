@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using FM;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Data;
 using System.Drawing;
@@ -7,11 +8,12 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
+// CalculateInvestments.cs - Form to calculate monthly totals of investments and list them
+
 namespace FM
 {
     public partial class CalculateInvestments : Form
     {
-        // Use the same SQL Server connection builder as other forms
         private static readonly string ConnStr = BuildConnStr();
 
         private static string BuildConnStr()

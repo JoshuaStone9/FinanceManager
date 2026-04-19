@@ -1,14 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
+// MainMenu.cs - Main application menu and navigation
 
 namespace FM.Forms
 {
@@ -129,18 +122,6 @@ namespace FM.Forms
             allPaymentsButton.FlatAppearance.BorderColor = Color.Black;
             allPaymentsButton.FlatAppearance.BorderSize = 2;
 
-            // Add Money Button
-            Button addMoneyButton = new Button();
-            addMoneyButton.Text = "Add Money";
-            addMoneyButton.Size = new Size(280, 45);
-            addMoneyButton.Location = new Point(110, 430); // moved lower
-            addMoneyButton.BackColor = Color.FromArgb(255, 120, 120);
-            addMoneyButton.Click += AddMoneyButton_Click;
-            // black border
-            addMoneyButton.FlatStyle = FlatStyle.Flat;
-            addMoneyButton.FlatAppearance.BorderColor = Color.Black;
-            addMoneyButton.FlatAppearance.BorderSize = 2;
-
             // InitialiseFields Button 
             InitialiseAllFieldsButton = new Button();
                 InitialiseAllFieldsButton.Text = "Initialise All Fields";
@@ -183,7 +164,6 @@ namespace FM.Forms
             Controls.Add(allPaymentsButton);
             Controls.Add(logo);
             Controls.Add(notificationBell);
-            Controls.Add(addMoneyButton);
         }
         private static string BuildConnStr()
         {
@@ -258,12 +238,6 @@ namespace FM.Forms
         {
             AllPayments allPaymentsForm = new AllPayments();
             allPaymentsForm.Show();
-        }
-
-        private void AddMoneyButton_Click(object sender, EventArgs e)
-        {
-            AddMoney addMoneyForm = new AddMoney();
-            addMoneyForm.Show();
         }
 
         public void InitialiseAllFieldsButton_Click(object sender, EventArgs e)

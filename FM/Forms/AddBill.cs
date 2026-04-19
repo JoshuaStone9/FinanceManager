@@ -1,12 +1,10 @@
 using FM.Data;
 using Microsoft.Data.SqlClient;
-using System;
 using System.Data;
-using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
-using System.Linq;
-using System.Windows.Forms;
+
+// AddBill.cs - Form to add a new bill
 
 namespace FM
 {

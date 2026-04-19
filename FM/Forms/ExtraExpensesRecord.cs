@@ -1,7 +1,6 @@
 ﻿using FM.Data;
-using System;
-using System.Linq;
-using System.Windows.Forms;
+
+// ExtraExpensesRecord.cs - Form to view and manage saved extra expenses (one-off or recurring)
 
 namespace FM.Forms
 {

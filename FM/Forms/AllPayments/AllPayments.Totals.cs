@@ -1,6 +1,8 @@
 using System.Data;
 using System.Globalization;
 
+// AllPayments.Totals.cs - Methods to calculate and update total amounts in AllPayments form
+
 namespace FM
 {
     public partial class AllPayments

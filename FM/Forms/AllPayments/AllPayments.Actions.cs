@@ -1,5 +1,7 @@
 using System.Data;
 
+// AllPayments.Actions.cs - Contains event handlers and actions for the AllPayments form
+
 namespace FM
 {
     public partial class AllPayments

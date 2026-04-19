@@ -1,11 +1,10 @@
 ﻿using FM.Data;
 using Microsoft.Data.SqlClient;
-using System;
 using System.Data;
-using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
-using System.Windows.Forms;
+
+// AddSavings.cs - Form to add a new savings record
 
 namespace FM
 {
@@ -64,7 +63,7 @@ namespace FM
 
             logo = new PictureBox
             {
-                Image = Image.FromFile("images/FM_Logo_Main_Menu.png"),
+                Image = Image.FromFile("Resources/images/FM_Logo_Main_Menu.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Size = new Size(120, 120),
                 Location = new Point((ClientSize.Width - 120) / 2, 0),

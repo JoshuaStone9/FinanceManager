@@ -1,13 +1,10 @@
 ﻿using FM.Data;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
-using System.Linq;
-using System.Windows.Forms;
+
+// AddInvestment.cs - Form to add a new investment record
 
 namespace FM
 {

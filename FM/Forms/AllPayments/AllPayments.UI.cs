@@ -1,5 +1,7 @@
 using System.Drawing.Drawing2D;
 
+// AllPayments.UI.cs - Methods to build and manage the user interface of the AllPayments form
+
 namespace FM
 {
     public partial class AllPayments

@@ -1,5 +1,7 @@
 using System.Globalization;
 
+// AllPayments.Helpers.cs - Helper methods for formatting and editing records in AllPayments form
+
 namespace FM
 {
     public partial class AllPayments

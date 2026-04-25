@@ -13,6 +13,7 @@ namespace FM
                 DateTime.Today.Month.ToString());
 
             InsertCarriedOverDebt();
+            InsertCarriedOverExcess();
 
             if (!int.TryParse(input, out int month) || month < 1 || month > 12)
             {

@@ -49,6 +49,7 @@ namespace FM
         // Computed values used across partials
         private decimal RemainingFundValue => decimal.TryParse(txtRemainingFund?.Text, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-GB"), out var value) ? value : 0;
         private decimal CarriedOverDebtValue => Math.Max(0, 1200 - RemainingFundValue);
+        private decimal CarriedOverExcessValue => Math.Max(0, RemainingFundValue - 1200);
 
         public AllPayments()
         {

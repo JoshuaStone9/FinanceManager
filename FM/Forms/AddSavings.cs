@@ -36,20 +36,6 @@ namespace FM
         private Panel bottomPanel;
         private PictureBox logo;
 
-        private static string BuildConnStr()
-        {
-            var builder = new SqlConnectionStringBuilder
-            {
-                DataSource = "STONEYMINI",
-                InitialCatalog = "Finance_Manager",
-                IntegratedSecurity = true,
-                Encrypt = true,
-                TrustServerCertificate = true
-            };
-
-            return builder.ConnectionString;
-        }
-
         public AddSavings()
         {
             Text = "Add Savings";
@@ -285,7 +271,7 @@ namespace FM
 
         private void EnsureSchemaAndSeedCategories()
         {
-            using var conn = new SqlConnection(BuildConnStr());
+            using var conn = new SqlConnection(DatabaseHelper.BuildConnStr());
             conn.Open();
 
             using (var cmd = new SqlCommand(@"
@@ -307,7 +293,7 @@ END;", conn))
 
         private DataTable CreateInsertAndLoadSavings(SavingsRecord rec)
         {
-            using var conn = new SqlConnection(BuildConnStr());
+            using var conn = new SqlConnection(DatabaseHelper.BuildConnStr());
             conn.Open();
 
             using (var cmd = new SqlCommand(@"

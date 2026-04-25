@@ -165,19 +165,7 @@ namespace FM.Forms
             Controls.Add(logo);
             Controls.Add(notificationBell);
         }
-        private static string BuildConnStr()
-        {
-            var builder = new SqlConnectionStringBuilder
-            {
-                DataSource = "STONEYMINI",         
-                InitialCatalog = "Finance_Manager",
-                IntegratedSecurity = true,          
-                Encrypt = true,
-                TrustServerCertificate = true
-            };
 
-            return builder.ConnectionString;
-        }
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             // Create gradient from top to bottom

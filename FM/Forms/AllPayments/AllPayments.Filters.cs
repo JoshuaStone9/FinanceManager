@@ -52,7 +52,7 @@ namespace FM
             MessageBox.Show("Filter cleared. Showing all records.", "Filter Cleared", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void FilterGridByMonth(int month, int year)
+        public void FilterGridByMonth(int month, int year)
         {
             try
             {

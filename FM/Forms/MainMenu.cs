@@ -31,7 +31,7 @@ namespace FM.Forms
 
 
         
-// Form settings
+            // Form settings
              Text = "Finance Manager";
             Size = new Size(500, 500);   // bigger form
             StartPosition = FormStartPosition.CenterScreen;
@@ -227,6 +227,7 @@ namespace FM.Forms
         {
             AllPayments allPaymentsForm = new AllPayments();
             allPaymentsForm.Show();
+            allPaymentsForm.FilterGridByMonth(DateTime.Today.Month, DateTime.Today.Year);
         }
 
         public void InitialiseAllFieldsButton_Click(object sender, EventArgs e)

@@ -415,11 +415,11 @@ namespace FM
                 const string carriedOverName = "Carried Over Excess";
 
                 const string checkQuery = @"
-                    SELECT COUNT(1) 
-                    FROM dbo.savings 
-                    WHERE name = @name 
-                    AND YEAR(duedate) = @year 
-                    AND MONTH(duedate) = @month";
+            SELECT COUNT(1) 
+            FROM dbo.savings 
+            WHERE [name] = @name
+            AND YEAR([date]) = @year 
+            AND MONTH([date]) = @month";
 
                 using var checkCmd = new SqlCommand(checkQuery, con);
                 checkCmd.Parameters.AddWithValue("@name", carriedOverName);
@@ -432,15 +432,15 @@ namespace FM
                 {
                     const string updateQuery = @"
                 UPDATE dbo.savings 
-                SET amount = @amount, 
-                    description = @description 
-                WHERE name = @name 
-                AND YEAR(duedate) = @year 
-                AND MONTH(duedate) = @month";
+                SET amount = @amount,
+                    notes = @notes
+                WHERE [name] = @name
+                AND YEAR([date]) = @year 
+                AND MONTH([date]) = @month";
 
                     using var updateCmd = new SqlCommand(updateQuery, con);
                     updateCmd.Parameters.AddWithValue("@amount", CarriedOverExcessValue);
-                    updateCmd.Parameters.AddWithValue("@description", $"Auto-created excess from {displayedDate:MMMM yyyy}");
+                    updateCmd.Parameters.AddWithValue("@notes", $"Auto-created excess from {displayedDate:MMMM yyyy}");
                     updateCmd.Parameters.AddWithValue("@name", carriedOverName);
                     updateCmd.Parameters.AddWithValue("@year", nextMonth.Year);
                     updateCmd.Parameters.AddWithValue("@month", nextMonth.Month);
@@ -451,18 +451,16 @@ namespace FM
                 {
                     const string insertQuery = @"
                 INSERT INTO dbo.savings 
-                (name, amount, category_id, category, length, duedate, description) 
+                ([name], amount, [length], [date], notes) 
                 VALUES 
-                (@name, @amount, @category_id, @category, @length, @duedate, @description)";
+                (@name, @amount, @length, @date, @notes)";
 
                     using var cmd = new SqlCommand(insertQuery, con);
                     cmd.Parameters.AddWithValue("@name", carriedOverName);
                     cmd.Parameters.AddWithValue("@amount", CarriedOverExcessValue);
-                    cmd.Parameters.AddWithValue("@category_id", DBNull.Value);
-                    cmd.Parameters.AddWithValue("@category", "Savings");
                     cmd.Parameters.AddWithValue("@length", DBNull.Value);
-                    cmd.Parameters.AddWithValue("@duedate", nextMonth);
-                    cmd.Parameters.AddWithValue("@description", $"Auto-created excess from {displayedDate:MMMM yyyy}");
+                    cmd.Parameters.AddWithValue("@date", nextMonth);
+                    cmd.Parameters.AddWithValue("@notes", $"Auto-created excess from {displayedDate:MMMM yyyy}");
 
                     cmd.ExecuteNonQuery();
                 }

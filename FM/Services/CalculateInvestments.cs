@@ -16,6 +16,20 @@ namespace FM
     {
         private static readonly string ConnStr = BuildConnStr();
 
+        private static string BuildConnStr()
+        {
+            var builder = new SqlConnectionStringBuilder
+            {
+                DataSource = "STONEYMINI",
+                InitialCatalog = "Finance_Manager",
+                IntegratedSecurity = true,
+                Encrypt = true,
+                TrustServerCertificate = true
+            };
+
+            return builder.ConnectionString;
+        }
+
         // UI
         private DataGridView dgvInvestments;
         private Button btnRetrieveInvestments;

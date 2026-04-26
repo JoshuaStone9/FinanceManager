@@ -203,6 +203,20 @@ namespace FM
             }
         }
 
+        private static string BuildConnStr()
+        {
+            var builder = new SqlConnectionStringBuilder
+            {
+                DataSource = "STONEYMINI",
+                InitialCatalog = "Finance_Manager",
+                IntegratedSecurity = true,
+                Encrypt = true,
+                TrustServerCertificate = true
+            };
+
+            return builder.ConnectionString;
+        }
+
         private sealed class CategoryItem
         {
             public int Id { get; }
@@ -288,7 +302,7 @@ namespace FM
 
         private void EnsureSchemaAndSeedCategories()
         {
-            using var conn = new SqlConnection(DatabaseHelper.BuildConnStr());
+            using var conn = new SqlConnection(BuildConnStr());
             conn.Open();
 
             using (var cmd = new SqlCommand(@"
@@ -387,7 +401,7 @@ WHERE (i.category IS NULL OR i.category = '');", conn))
 
         private void InsertInvestmentsToDb(InvestmentRecord rec, int categoryId, string categoryName)
         {
-            using var conn = new SqlConnection(DatabaseHelper.BuildConnStr());
+            using var conn = new SqlConnection(BuildConnStr());
             conn.Open();
 
             if (!decimal.TryParse(rec.Amount, NumberStyles.Number, CultureInfo.CurrentCulture, out var amount) &&

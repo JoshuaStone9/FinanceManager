@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using System.Data;
 using System.Drawing.Drawing2D;
 using System.Globalization;
+using FM.Helpers;
 
 // AddBill.cs - Form to add a new bill
 
@@ -293,23 +294,9 @@ namespace FM
             txtName.Focus();
         }
 
-        private static string BuildConnStr()
-        {
-            var builder = new SqlConnectionStringBuilder
-            {
-                DataSource = "STONEYMINI",
-                InitialCatalog = "Finance_Manager",
-                IntegratedSecurity = true,
-                Encrypt = true,
-                TrustServerCertificate = true
-            };
-
-            return builder.ConnectionString;
-        }
-
         private void CreateAndLoadBillsTable()
         {
-            using var conn = new SqlConnection(BuildConnStr());
+            using var conn = new SqlConnection(DatabaseHelper.BuildConnStr());
             conn.Open();
 
             using (var cmd = new SqlCommand(@"

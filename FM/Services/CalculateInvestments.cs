@@ -1,4 +1,5 @@
 ﻿using FM;
+using FM.Helpers;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Data;
@@ -14,21 +15,6 @@ namespace FM
 {
     public partial class CalculateInvestments : Form
     {
-        private static readonly string ConnStr = BuildConnStr();
-
-        private static string BuildConnStr()
-        {
-            var builder = new SqlConnectionStringBuilder
-            {
-                DataSource = "STONEYMINI",
-                InitialCatalog = "Finance_Manager",
-                IntegratedSecurity = true,
-                Encrypt = true,
-                TrustServerCertificate = true
-            };
-
-            return builder.ConnectionString;
-        }
 
         // UI
         private DataGridView dgvInvestments;
@@ -281,7 +267,7 @@ namespace FM
 
         private void RetrieveInvestments(object? sender, EventArgs e)
         {
-            using var conn = new SqlConnection(ConnStr);
+            using var conn = new SqlConnection(DatabaseHelper.BuildConnStr());
             conn.Open();
 
             const string sql = @"

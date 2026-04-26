@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using FM.Helpers;
+using Microsoft.Data.SqlClient;
 using System.Drawing.Drawing2D;
 
 // MainMenu.cs - Main application menu and navigation
@@ -165,19 +166,7 @@ namespace FM.Forms
             Controls.Add(logo);
             Controls.Add(notificationBell);
         }
-        private static string BuildConnStr()
-        {
-            var builder = new SqlConnectionStringBuilder
-            {
-                DataSource = "STONEYMINI",         
-                InitialCatalog = "Finance_Manager",
-                IntegratedSecurity = true,          
-                Encrypt = true,
-                TrustServerCertificate = true
-            };
 
-            return builder.ConnectionString;
-        }
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             // Create gradient from top to bottom
@@ -245,7 +234,7 @@ namespace FM.Forms
             // Call the method to initialize all fields in the database
             try
             {
-                using var con = new SqlConnection(BuildConnStr());
+                using var con = new SqlConnection(DatabaseHelper.BuildConnStr());
                 con.Open();
                 using var cmd = con.CreateCommand();
                 cmd.CommandText = "EXEC InitializeAllFields"; // Assuming you have a stored procedure to initialize fields

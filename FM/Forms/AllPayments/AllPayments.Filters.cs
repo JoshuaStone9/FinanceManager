@@ -1,6 +1,9 @@
 
 // AllPayments.Filters.cs - Partial class for AllPayments form, handling filtering by month and year
 
+using FM.Helpers;
+using Microsoft.Data.SqlClient;
+
 namespace FM
 {
     public partial class AllPayments
@@ -53,7 +56,7 @@ namespace FM
         {
             try
             {
-                using var con = new Microsoft.Data.SqlClient.SqlConnection(BuildConnStr());
+                using var con = new SqlConnection(DatabaseHelper.BuildConnStr());
                 con.Open();
 
                 string billsQuery = @"SELECT billid, name, amount, [date], type, length, description 

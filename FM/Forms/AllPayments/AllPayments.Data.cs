@@ -1,5 +1,6 @@
 using Microsoft.Data.SqlClient;
 using System.Data;
+using FM.Helpers;
 
 // AllPayments.Data.cs - Data access and loading logic for the AllPayments form
 
@@ -7,20 +8,6 @@ namespace FM
 {
     public partial class AllPayments
     {
-        private static string BuildConnStr()
-        {
-            var builder = new SqlConnectionStringBuilder
-            {
-                DataSource = "STONEYMINI",
-                InitialCatalog = "Finance_Manager",
-                IntegratedSecurity = true,
-                Encrypt = true,
-                TrustServerCertificate = true
-            };
-
-            return builder.ConnectionString;
-        }
-
         private void EmergencyFundData()
         {
             LoadEmergencyFund();
@@ -30,7 +17,7 @@ namespace FM
         {
             try
             {
-                using var con = new SqlConnection(BuildConnStr());
+                using var con = new SqlConnection(DatabaseHelper.BuildConnStr());
                 con.Open();
                 string query = "SELECT TOP 1 amount FROM dbo.emergency_fund ORDER BY updated_at DESC";
                 using var cmd = new SqlCommand(query, con);
@@ -58,7 +45,7 @@ namespace FM
             {
                 int monthId = currentMonth;
 
-                using var con = new SqlConnection(BuildConnStr());
+                using var con = new SqlConnection(DatabaseHelper.BuildConnStr());
                 con.Open();
 
                 using var cmd = new SqlCommand(
@@ -84,7 +71,7 @@ namespace FM
             {
                 int monthId = currentMonth;
 
-                using var con = new SqlConnection(BuildConnStr());
+                using var con = new SqlConnection(DatabaseHelper.BuildConnStr());
                 con.Open();
 
                 using var cmd = new SqlCommand(
@@ -108,7 +95,7 @@ namespace FM
         {
             try
             {
-                using var con = new SqlConnection(BuildConnStr());
+                using var con = new SqlConnection(DatabaseHelper.BuildConnStr());
                 con.Open();
                 string query = "SELECT billid, name, amount, [date], type, length, description FROM dbo.bills ORDER BY [date] DESC";
                 var da = new SqlDataAdapter(query, con);
@@ -130,7 +117,7 @@ namespace FM
         {
             try
             {
-                using var con = new SqlConnection(BuildConnStr());
+                using var con = new SqlConnection(DatabaseHelper.BuildConnStr());
                 con.Open();
                 string query = "SELECT investments_id, name, amount, [date], category, length, notes FROM dbo.investments ORDER BY [date] DESC";
                 var da = new SqlDataAdapter(query, con);
@@ -152,7 +139,7 @@ namespace FM
         {
             try
             {
-                using var con = new SqlConnection(BuildConnStr());
+                using var con = new SqlConnection(DatabaseHelper.BuildConnStr());
                 con.Open();
                 string query = "SELECT extra_expense_id, name, amount, duedate AS [date], category, type, length, description FROM dbo.extra_expenses ORDER BY duedate DESC";
                 var da = new SqlDataAdapter(query, con);
@@ -174,7 +161,7 @@ namespace FM
         {
             try
             {
-                using var con = new SqlConnection(BuildConnStr());
+                using var con = new SqlConnection(DatabaseHelper.BuildConnStr());
                 con.Open();
                 string query = "SELECT savings_id, name, amount, length, [date], notes FROM dbo.savings ORDER BY [date] DESC";
                 var da = new SqlDataAdapter(query, con);
@@ -213,7 +200,7 @@ namespace FM
         {
             try
             {
-                using var con = new SqlConnection(BuildConnStr());
+                using var con = new SqlConnection(DatabaseHelper.BuildConnStr());
                 con.Open();
 
                 var displayedDate = new DateTime(currentYear, currentMonth, 1);
@@ -276,7 +263,7 @@ namespace FM
         {
             try
             {
-                using var con = new SqlConnection(BuildConnStr());
+                using var con = new SqlConnection(DatabaseHelper.BuildConnStr());
                 con.Open();
 
                 var displayedDate = new DateTime(currentYear, currentMonth, 1);
@@ -343,7 +330,7 @@ namespace FM
 
             try
             {
-                using var con = new SqlConnection(BuildConnStr());
+                using var con = new SqlConnection(DatabaseHelper.BuildConnStr());
                 con.Open();
 
                 var displayedDate = new DateTime(currentYear, currentMonth, 1);
@@ -406,7 +393,7 @@ namespace FM
 
             try
             {
-                using var con = new SqlConnection(BuildConnStr());
+                using var con = new SqlConnection(DatabaseHelper.BuildConnStr());
                 con.Open();
 
                 var displayedDate = new DateTime(currentYear, currentMonth, 1);

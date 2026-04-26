@@ -1,3 +1,5 @@
+using FM.Helpers;
+using Microsoft.Data.SqlClient;
 using System.Data;
 
 // AllPayments.Actions.cs - Contains event handlers and actions for the AllPayments form
@@ -78,7 +80,7 @@ namespace FM
 
             try
             {
-                using var con = new Microsoft.Data.SqlClient.SqlConnection(BuildConnStr());
+                using var con = new SqlConnection(DatabaseHelper.BuildConnStr());
                 con.Open();
                 using var tx = con.BeginTransaction();
                 using var cmd = con.CreateCommand();
@@ -142,7 +144,7 @@ namespace FM
 
             try
             {
-                using var con = new Microsoft.Data.SqlClient.SqlConnection(BuildConnStr());
+                using var con = new SqlConnection(DatabaseHelper.BuildConnStr());
                 con.Open();
                 using var cmd = con.CreateCommand();
 
@@ -195,7 +197,7 @@ namespace FM
 
             try
             {
-                using var con = new Microsoft.Data.SqlClient.SqlConnection(BuildConnStr());
+                using var con = new SqlConnection(DatabaseHelper.BuildConnStr());
                 con.Open();
 
                 using var cmd = con.CreateCommand();
@@ -240,7 +242,7 @@ ELSE
 
             try
             {
-                using var con = new Microsoft.Data.SqlClient.SqlConnection(BuildConnStr());
+                using var con = new SqlConnection(DatabaseHelper.BuildConnStr());
                 con.Open();
 
                 using var cmd = con.CreateCommand();

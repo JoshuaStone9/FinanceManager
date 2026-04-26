@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using FM.Helpers;
+using Microsoft.Data.SqlClient;
 using System.Data;
 
 // BillsRecord.cs - Form to view and manage saved bills
@@ -19,20 +20,6 @@ namespace FM
             btnCloseBills.Click += (s, e) => Close();
 
             Load += BillsRecord_Load;
-        }
-
-        private static string BuildConnStr()
-        {
-            var builder = new SqlConnectionStringBuilder
-            {
-                DataSource = "STONEYMINI",
-                InitialCatalog = "Finance_Manager",
-                IntegratedSecurity = true,
-                Encrypt = true,
-                TrustServerCertificate = true
-            };
-
-            return builder.ConnectionString;
         }
 
         private void BillsRecord_Load(object? sender, EventArgs e)
@@ -62,7 +49,7 @@ namespace FM
 
         private void LoadBillsFromDb()
         {
-            using var con = new SqlConnection(BuildConnStr());
+            using var con = new SqlConnection(DatabaseHelper.BuildConnStr());
             con.Open();
 
             using var da = new SqlDataAdapter("SELECT billid, name, amount, [date], type, length, description FROM dbo.bills ORDER BY [date] DESC;", con);
@@ -105,7 +92,7 @@ namespace FM
 
             try
             {
-                using var con = new SqlConnection(BuildConnStr());
+                using var con = new SqlConnection(DatabaseHelper.BuildConnStr());
                 con.Open();
 
                 using var tx = con.BeginTransaction();
